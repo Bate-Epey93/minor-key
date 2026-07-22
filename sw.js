@@ -1,4 +1,4 @@
-const VERSION = 'minor-key-v2';
+const VERSION = 'minor-key-v3';
 const PRECACHE = [
   './',
   './index.html',

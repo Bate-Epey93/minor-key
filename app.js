@@ -2602,7 +2602,23 @@ var CURATED = {};
   window.navTo = navTo; window.buzz = buzz; window.applyInlineTheme = applyInlineTheme;
   window.PREFS = PREFS; window.mkOpenReader = function (k, i) { openReader(k, i); };
 
+  function dismissSplash() {
+    var sp = document.getElementById('splash');
+    if (!sp || sp.classList.contains('done')) return;
+    sp.classList.add('done');
+    setTimeout(function () { sp.classList.add('gone'); }, 950);
+  }
+  function scheduleSplash() {
+    var sp = document.getElementById('splash');
+    if (!sp) return;
+    var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    setTimeout(dismissSplash, reduced ? 700 : 3200);
+    // safety: never let the splash trap the app
+    setTimeout(dismissSplash, 6000);
+  }
+
   function boot() {
+    scheduleSplash();
     try {
       hookMeds();
       createPages(); buildNav(); buildSettings(); wrapOpenD(); wrapSetF();
