@@ -1,0 +1,6 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    { "name": "minor-key", "runtimeExecutable": "npx", "runtimeArgs": ["--yes", "http-server", ".", "-p", "4181", "-c-1"], "port": 4181, "autoPort": true }
+  ]
+}
