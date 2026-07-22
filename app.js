@@ -1282,8 +1282,8 @@ var CURATED = {};
       '<div class="today-date">' + DAYS[now.getDay()].toUpperCase() + ' · ' + MONTHS[now.getMonth()].toUpperCase() + ' ' + now.getDate() + '</div>' +
       '<div class="today-greet">' + greet + '</div>';
 
-    if (typeof refrainCardHTML === 'function') {
-      h += '<div class="today-sec">Today’s Refrain</div>' + refrainCardHTML();
+    if (typeof refrainPairHTML === 'function') {
+      h += '<div class="today-sec">Today’s Refrains</div>' + refrainPairHTML();
     }
 
     h += '<div class="today-sec">' + (slot === 'evening' ? 'Tonight’s Contemplation' : 'Today’s Meditation') + '</div>' +

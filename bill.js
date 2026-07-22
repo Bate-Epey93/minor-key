@@ -67,6 +67,15 @@ function refrainOfDay() {
   var doy = Math.floor((now - new Date(now.getFullYear(), 0, 0)) / 864e5);
   return REFRAINS[doy % REFRAINS.length];
 }
+function refrainOfKind(kind) {
+  var pool = REFRAINS.filter(function (r) { return r.kind === kind; });
+  var now = new Date();
+  var doy = Math.floor((now - new Date(now.getFullYear(), 0, 0)) / 864e5);
+  return pool[doy % pool.length];
+}
+function refrainPairHTML() {
+  return refrainCardHTML(refrainOfKind('quote')) + refrainCardHTML(refrainOfKind('after'));
+}
 var REFRAIN_KIND = {
   quote: { label: 'from the canon', color: '#8A9BC4' },
   after: { label: 'homage — an original line, not a lyric', color: '#9B8AC4' },
@@ -139,10 +148,10 @@ function weekIdx() { return Math.floor(Date.now() / 864e5 / 7); }
 function practiceCardsForToday(slot, now) {
   var h = '';
   h += slot === 'evening' ? minorKeyCardHTML() : computeCardHTML();
-  if (now.getDay() === 5) {
-    h += '<div class="today-sec">For Her</div>' +
+  {
+    h += '<div class="today-sec">For Her · this week</div>' +
       '<div class="today-card glass" id="tdHer" style="border-left:3px solid #C48AA5">' +
-        '<div class="tc-kicker" style="color:#C48AA5">' + motifSVG('heart', 'td-her', { color: '#C48AA5' }) + ' Friday · one act of speech</div>' +
+        '<div class="tc-kicker" style="color:#C48AA5">' + motifSVG('heart', 'td-her', { color: '#C48AA5' }) + ' one act of speech, spoken — this week</div>' +
         '<div class="tc-sub" style="font-style:normal">' + esc(FORHER[weekIdx() % FORHER.length]) + '</div>' +
       '</div>';
   }
